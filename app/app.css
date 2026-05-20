@@ -9,3 +9,62 @@ html,
 body {
 
 }
+
+/* Quantity selector responsive tweaks */
+.qty-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.qty-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  background: white;
+}
+.qty-count {
+  min-width: 32px;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .qty-button { min-width: 44px; min-height: 44px; padding: 8px; }
+  .qty-count { min-width: 36px; font-size: 1rem; }
+}
+
+/* ItemDetail responsive */
+.item-detail {
+  display: flex;
+  gap: 24px;
+  padding: 16px;
+  align-items: flex-start;
+}
+.item-detail img {
+  width: 320px;
+  height: 320px;
+  object-fit: contain;
+}
+.item-detail .item-detail-content {
+  max-width: 640px;
+}
+
+@media (max-width: 768px) {
+  .item-detail {
+    flex-direction: column;
+    align-items: center;
+  }
+  .item-detail img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+  .item-detail .item-detail-content {
+    max-width: 100%;
+  }
+}

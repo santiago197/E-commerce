@@ -8,17 +8,17 @@ interface NavBarMainProps {
 
 const NavBarMain: FC<NavBarMainProps> = ({ title = 'Mi Tienda' }) => {
   return (
-    <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid #eee' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <img src="/logo.avif" alt="Logo" style={{ height: 40 }} />
-        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <h3 style={{ margin: 0 }}>{title}</h3>
+    <nav className="navbar navbar-light bg-light">
+      <div className="container d-flex justify-content-between align-items-center">
+        <Link to="/" className="navbar-brand d-flex align-items-center">
+          <img src="/logo.avif" alt="Logo" style={{ height: 40, marginRight: 8 }} />
+          <span>{title}</span>
         </Link>
-      </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <Link to="/" style={{ textDecoration: 'none', color: '#007bff' }}>Catálogo</Link>
-        <CartWidget />
+        <div className="d-flex align-items-center gap-3">
+          <Link to="/" className="nav-link">Catálogo</Link>
+          <CartWidget />
+        </div>
       </div>
     </nav>
   );

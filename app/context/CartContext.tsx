@@ -13,6 +13,7 @@ type State = {
 type Action =
   | { type: 'ADD_ITEM'; product: Product; quantity: number }
   | { type: 'REMOVE_ITEM'; id: number }
+  | { type: 'UPDATE_ITEM'; id: number; quantity: number }
   | { type: 'CLEAR' };
 
 const CartContext = createContext<{
@@ -22,6 +23,9 @@ const CartContext = createContext<{
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
+  updateItemQuantity: (id: number, quantity: number) => void;
+  incrementItem: (id: number) => void;
+  decrementItem: (id: number) => void;
 } | undefined>(undefined);
 
 function reducer(state: State, action: Action): State {
@@ -39,6 +43,12 @@ function reducer(state: State, action: Action): State {
     }
     case 'REMOVE_ITEM':
       return { items: state.items.filter(i => i.product.id !== action.id) };
+    case 'UPDATE_ITEM':
+      return {
+        items: state.items
+          .map(i => (i.product.id === action.id ? { ...i, quantity: action.quantity } : i))
+          .filter(i => i.quantity > 0),
+      };
     case 'CLEAR':
       return { items: [] };
     default:
@@ -52,11 +62,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const addItem = (product: Product, quantity = 1) => dispatch({ type: 'ADD_ITEM', product, quantity });
   const removeItem = (id: number) => dispatch({ type: 'REMOVE_ITEM', id });
   const clearCart = () => dispatch({ type: 'CLEAR' });
+  const updateItemQuantity = (id: number, quantity: number) => dispatch({ type: 'UPDATE_ITEM', id, quantity });
+  const incrementItem = (id: number) => {
+    const existing = state.items.find((i) => i.product.id === id);
+    if (existing) updateItemQuantity(id, existing.quantity + 1);
+  };
+  const decrementItem = (id: number) => {
+    const existing = state.items.find((i) => i.product.id === id);
+    if (existing) updateItemQuantity(id, existing.quantity - 1);
+  };
   const getTotalItems = () => state.items.reduce((s, it) => s + it.quantity, 0);
   const getTotalPrice = () => state.items.reduce((s, it) => s + it.quantity * (it.product.price ?? 0), 0);
 
   return (
-    <CartContext.Provider value={{ state, addItem, removeItem, clearCart, getTotalItems, getTotalPrice }}>
+    <CartContext.Provider value={{ state, addItem, removeItem, clearCart, getTotalItems, getTotalPrice, updateItemQuantity, incrementItem, decrementItem }}>
       {children}
     </CartContext.Provider>
   );

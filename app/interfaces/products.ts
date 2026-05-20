@@ -11,6 +11,7 @@ export interface Product {
     category: string;
     image?: string;
     rating?: Rating;
+    slug?: string; // Optional slug for internal routing
 }
 
 export type Products = Product[];

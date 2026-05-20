@@ -10,9 +10,11 @@ const ItemList = ({ products = [] }: ItemListProps) => {
   if (!products || products.length === 0) return <div>No hay productos disponibles.</div>;
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 16 }}>
+    <div className="row g-3">
       {products.map((p) => (
-        <Item key={p.id} product={p} />
+        <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+          <Item product={p} />
+        </div>
       ))}
     </div>
   );

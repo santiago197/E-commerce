@@ -8,19 +8,9 @@ const CartWidget: FC = () => {
   const count = getTotalItems();
 
   return (
-    <Link to="/cart" aria-label="Ver carrito" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: "inherit" }}>
+    <Link to="/cart" aria-label="Ver carrito" className="d-inline-flex align-items-center text-decoration-none text-dark">
       <FaShoppingCart size={20} />
-      <span style={{
-        display: "inline-block",
-        minWidth: 20,
-        padding: "2px 6px",
-        marginLeft: 6,
-        borderRadius: 12,
-        background: "#dc3545",
-        color: "white",
-        fontSize: 12,
-        textAlign: "center"
-      }}>{count}</span>
+      <span className="badge bg-danger ms-2">{count}</span>
     </Link>
   );
 };

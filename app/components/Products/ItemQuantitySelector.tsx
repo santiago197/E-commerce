@@ -1,6 +1,7 @@
 import { type FC, useState } from 'react';
 import AddItemButton from './AddItemButton';
 import type { Product } from '~/interfaces/products';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 interface Props {
   onAdd?: (quantity: number) => void;
@@ -15,14 +16,14 @@ const ItemQuantitySelector: FC<Props> = ({ onAdd, product, initial = 1, max = 99
   const dec = () => setQty((q) => Math.max(1, q - 1));
 
   return (
-    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-      <button onClick={dec} aria-label="disminuir">-</button>
-      <div style={{ minWidth: 28, textAlign: 'center' }}>{qty}</div>
-      <button onClick={inc} aria-label="aumentar">+</button>
+    <div className="qty-container">
+      <button onClick={dec} aria-label="disminuir" className="qty-button"><FaMinus size={14} /></button>
+      <div className="qty-count">{qty}</div>
+      <button onClick={inc} aria-label="aumentar" className="qty-button"><FaPlus size={14} /></button>
       {product ? (
         <AddItemButton product={product} quantity={qty} />
       ) : (
-        <button onClick={() => onAdd?.(qty)} style={{ marginLeft: 8 }}>Agregar</button>
+        <button onClick={() => onAdd?.(qty)} style={{ marginLeft: 8 }} className="btn btn-sm btn-outline-primary">Agregar</button>
       )}
     </div>
   );

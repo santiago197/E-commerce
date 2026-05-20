@@ -28,23 +28,26 @@ const Item = ({ product: initialProduct }: ItemProps) => {
   // Si se recibe `product` como prop (lista), renderiza preview/card.
   if (initialProduct) {
     return (
-      <div style={{ border: '1px solid #eee', padding: 12, borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div className="card h-100">
         {product.image && (
-          <img src={product.image} alt={product.title} style={{ width: '100%', height: 160, objectFit: 'contain' }} />
+          <img src={product.image} alt={product.title} className="card-img-top" style={{ height: 160, objectFit: 'contain' }} />
         )}
-        <div style={{ fontSize: 14, fontWeight: 600 }}>{product.title}</div>
-        <div style={{ color: '#444', fontWeight: 700 }}>${product.price}</div>
-        <div style={{ color: '#666', fontSize: 13 }}>{product.category}</div>
+        <div className="card-body d-flex flex-column">
+          <h5 className="card-title" style={{ fontSize: 14 }}>{product.title}</h5>
+          <p className="card-text text-muted mb-2">{product.category}</p>
+          <div className="fw-bold mb-3">${product.price}</div>
 
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 'auto' }}>
-          <button onClick={dec} aria-label="disminuir">-</button>
-          <div>{qty}</div>
-          <button onClick={inc} aria-label="aumentar">+</button>
-          {/* Use AddItemButton for consistency */}
-          <AddItemButton product={product} quantity={qty} />
+          <div className="mt-auto d-flex align-items-center gap-2">
+            <button onClick={dec} aria-label="disminuir" className="btn btn-outline-secondary btn-sm"><span aria-hidden>-</span></button>
+            <div className="px-2">{qty}</div>
+            <button onClick={inc} aria-label="aumentar" className="btn btn-outline-secondary btn-sm"><span aria-hidden>+</span></button>
+            <div className="ms-auto">
+              <AddItemButton product={product} quantity={qty} />
+            </div>
+          </div>
+
+          <Link to={`/product/${product.slug}`} className="btn btn-link mt-2 p-0">Ver más</Link>
         </div>
-
-        <Link to={`/product/${product.slug}`} style={{ marginTop: 8, color: '#007bff' }}>Ver más</Link>
       </div>
     );
   }
