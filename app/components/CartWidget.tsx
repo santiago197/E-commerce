@@ -1,12 +1,12 @@
 import { type FC } from "react";
 import { Link } from "react-router";
 import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from "~/context/CartContext";
 
-interface CartWidgetProps {
-  count?: number;
-}
+const CartWidget: FC = () => {
+  const { getTotalItems } = useCart();
+  const count = getTotalItems();
 
-const CartWidget: FC<CartWidgetProps> = ({ count = 0 }) => {
   return (
     <Link to="/cart" aria-label="Ver carrito" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: "inherit" }}>
       <FaShoppingCart size={20} />
