@@ -14,3 +14,8 @@ export interface Product {
 }
 
 export type Products = Product[];
+
+// Add optional slug for internal routing
+export interface ProductWithSlug extends Product {
+    slug?: string;
+}

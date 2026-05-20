@@ -14,8 +14,8 @@ export default function ItemListContainer({ category, greeting }: Props) {
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   const filtered: Product[] = category
-    ? data.filter((p) => String(p.category).toLowerCase() === String(category).toLowerCase())
-    : data;
+    ? (data as Product[]).filter((p) => String(p.category).toLowerCase() === String(category).toLowerCase())
+    : (data as Product[]);
 
   return (
     <section>

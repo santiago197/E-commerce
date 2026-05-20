@@ -3,10 +3,10 @@ import useProducts, { useProduct } from './hooks/useProducts';
 import ItemDetail from './ItemDetail';
 
 export default function ItemDetailContainer() {
-  const params = useParams() as { id?: string };
-  const id = params.id ? Number(params.id) : undefined;
+  const params = useParams() as { slug?: string };
+  const slug = params.slug;
 
-  const { data, loading, error } = useProduct(id);
+  const { data, loading, error } = useProduct(slug);
 
   if (loading) return <div>Cargando producto...</div>;
   if (error) return <div>Error: {error}</div>;

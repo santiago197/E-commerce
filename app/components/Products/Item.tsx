@@ -9,12 +9,12 @@ interface ItemProps {
 }
 
 const Item = ({ product: initialProduct }: ItemProps) => {
-  const params = useParams() as { id?: string };
+  const params = useParams() as { slug?: string };
   const [product, setProduct] = useState<Product | undefined>(initialProduct);
   const [qty, setQty] = useState(1);
 
-  const id = params.id ? Number(params.id) : undefined;
-  const { data: fetchedProduct, loading } = useProduct(id);
+  const slug = params.slug;
+  const { data: fetchedProduct, loading } = useProduct(slug);
 
   // prefer prop product, otherwise the fetched one
   if (!product && fetchedProduct) setProduct(fetchedProduct);
@@ -44,7 +44,7 @@ const Item = ({ product: initialProduct }: ItemProps) => {
           <AddItemButton product={product} quantity={qty} />
         </div>
 
-        <Link to={`/product/${product.id}`} style={{ marginTop: 8, color: '#007bff' }}>Ver más</Link>
+        <Link to={`/product/${product.slug}`} style={{ marginTop: 8, color: '#007bff' }}>Ver más</Link>
       </div>
     );
   }
