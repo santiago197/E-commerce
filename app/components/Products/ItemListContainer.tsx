@@ -10,8 +10,8 @@ interface Props {
 export default function ItemListContainer({ category, greeting }: Props) {
   const { data, loading, error } = useProducts();
 
-  if (loading) return <div>Cargando productos...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className="d-flex justify-content-center py-5"><div className="spinner-border" role="status"><span className="visually-hidden">Cargando...</span></div></div>;
+  if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   const filtered: Product[] = category
     ? data.filter((p) => String(p.category).toLowerCase() === String(category).toLowerCase())
