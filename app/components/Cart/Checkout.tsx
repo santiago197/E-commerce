@@ -48,17 +48,19 @@ export default function Checkout() {
         <section>
           <h2>Datos de envío</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <input placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
-            <input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input placeholder="Dirección" value={address} onChange={(e) => setAddress(e.target.value)} />
+            <input placeholder="Nombre" value={name} className="form-control" onChange={(e) => setName(e.target.value)} />
+            <input placeholder="Email" value={email} className="form-control" type="email" onChange={(e) => setEmail(e.target.value)} />
+            <input placeholder="Dirección" value={address} className="form-control" onChange={(e) => setAddress(e.target.value)} />
           </div>
 
           {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
           {success && <div style={{ color: 'green', marginTop: 8 }}>{success}</div>}
 
           <div style={{ marginTop: 12 }}>
-            <button onClick={handleConfirm}>Confirmar compra</button>
-            <button style={{ marginLeft: 8 }} onClick={() => navigate('/')}>Volver al catálogo</button>
+            <button onClick={handleConfirm} className='btn btn-primary'>Confirmar compra</button>
+            <button style={{ marginLeft: 8 }} onClick={() => navigate('/')} className='btn btn-outline-secondary'>
+              Volver al catálogo
+            </button>
           </div>
         </section>
 
