@@ -2,7 +2,7 @@ import { memo, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import type { Product } from '~/interfaces/products';
 import { useProduct } from './hooks/useProducts';
-import { useCart } from '~/context/CartContext';
+import AddItemButton from './AddItemButton';
 
 interface ItemProps {
   product?: Product;
@@ -21,10 +21,7 @@ const Item = ({ product: initialProduct }: ItemProps) => {
 
   const inc = () => setQty((q) => Math.min(99, q + 1));
   const dec = () => setQty((q) => Math.max(1, q - 1));
-  const { addItem } = useCart();
-  const addToCart = () => {
-    if (product) addItem(product, qty);
-  };
+  
 
   if (!product) return <div>{loading ? 'Cargando producto...' : 'Producto no encontrado'}</div>;
 
@@ -43,7 +40,8 @@ const Item = ({ product: initialProduct }: ItemProps) => {
           <button onClick={dec} aria-label="disminuir">-</button>
           <div>{qty}</div>
           <button onClick={inc} aria-label="aumentar">+</button>
-          <button onClick={addToCart} style={{ marginLeft: 'auto' }}>Agregar</button>
+          {/* Use AddItemButton for consistency */}
+          <AddItemButton product={product} quantity={qty} />
         </div>
 
         <Link to={`/product/${product.id}`} style={{ marginTop: 8, color: '#007bff' }}>Ver más</Link>

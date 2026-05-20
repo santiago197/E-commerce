@@ -27,7 +27,7 @@ const ItemDetail: FC<Props> = ({ product }) => {
         <p style={{ lineHeight: 1.5 }}>{product.description}</p>
 
         <div style={{ marginTop: 12 }}>
-          <ItemQuantitySelector onAdd={handleAdd} />
+          <ItemQuantitySelector product={product} />
         </div>
       </div>
     </article>
