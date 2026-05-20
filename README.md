@@ -27,6 +27,8 @@ precio y un botón para ver más.
 6. ItemDetailContainer
 Descripción: Contenedor que, según el ID del producto en la URL, busca los datos del 
 producto y renderiza el componente ItemDetail.
+Descripción: Contenedor que, según el ID del producto en la URL, busca los datos del 
+producto y renderiza el componente ItemDetail.
 7. ItemDetail
 Descripción: Muestra información detallada del producto (imagen, nombre, precio, 
 descripción). Incluye el ItemQuantitySelector.
