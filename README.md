@@ -1,4 +1,11 @@
 # Ejercicio Práctico:
+
+**Cómo ejecutar el proyecto**
+- **Instalar dependencias:** ejecutar `pnpm install` en la raíz del proyecto.
+- **Iniciar en desarrollo:** ejecutar `pnpm dev` y abrir la app en `http://localhost:5173`.
+- **Construir para producción:** ejecutar `pnpm run build`.
+- **Visualización en vivo:** la aplicación también está disponible en https://e-commerce-mu-blush-18.vercel.app/
+
 • Consigna: Desarrollar una aplicación e-commerce en React para vender productos de un 
 rubro a elección (por ejemplo: libros, ropa, tecnología, comida, etc.).
 • La app debe permitir:
